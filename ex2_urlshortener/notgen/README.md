@@ -12,7 +12,7 @@ def start do
 end
 ```
 
-This check function is call to create one process of URLshortener in this case the module is named Notgen.
+This function is call to create one process of URLshortener in this case the module is named Notgen.
 
 Why this is neat is because you can have a loop to create multiple processes all self contained URLshortner code and execute request concurrently.
 
@@ -40,11 +40,11 @@ Why this is neat is because you can have a loop to create multiple processes all
   end
 ```
 
-Notice the loop function loop itself. Erlang and Elixir aren't object like in OOP where you can hold state. To hold state you need to loop the function itself while sending the updated state usually like an accumulator pattern but continuously until someone tell it to end.
+Notice the loop function loop itself. Erlang and Elixir are functional not an OOP language where you can hold state. To hold state you need to loop the function itself while sending the updated state usually like an accumulator pattern but continuously until someone tell it to end.
 
 Every process can only send and recieve messages. The `receive` code block is where you tell your process what type of message you're willing to answer.  
 
-Notice in the `receive` block the logic chose to listen to four type of message (`:stop`, `shorten`, `get`, `flush`).
+Notice in the `receive` block the logic chose to listen to four type of message (`:stop`, `:shorten`, `:get`, `:flush`).
 
 So when you call `start` function, you start an instance of your shorten in a process. Each process act like a server. It wait for a user or this case `caller` request and return via `send` the result. 
 
